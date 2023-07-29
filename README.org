@@ -51,16 +51,16 @@ pip install pyperclip ics python-dateutil termcolor
 ** Installation
 To install and run the script, follow these steps:
 
-1. Clone the repository:
+- Clone the repository:
 : git clone https://github.com/incandescentman/primetime.git
-2. Navigate to the repository directory:
+- Navigate to the repository directory:
 : cd primetime
-3. Ensure you have the required Python libraries. You can install them with pip:
+- Ensure you have the required Python libraries. You can install them with pip:
 #+begin_src sh
 pip install pyperclip ics python-dateutil termcolor
 #+end_src
-4. Run the script:
-  python time_blocking.py
+- Run the script:
+: python time_blocking.py
 
 ** Usage
 To use the script, run it and paste your schedule when prompted, or copy your schedule to the clipboard before running the script.
