@@ -25,7 +25,7 @@ def get_ch():
 data = pyperclip.paste().split('\n')
 
 # If clipboard data doesn't seem to contain a valid schedule, ask for input
-if not any(re.match(r'\d+(:\d+)?(am|pm)', line) for line in data):
+if not any(re.match(r'\d+(:\d+)?(am|pm)', line, flags=re.IGNORECASE) for line in data):
     print("Please paste your schedule (then press RETURN twice):")
     data = []
     while True:
@@ -52,23 +52,28 @@ for item in data:
     # Remove any hyphens from the line
     item = item.replace('-', '').strip()
 
-    # Split the line into parts
-    parts = item.split()
 
-    # The first part is the start time
-    time_part = parts[0].replace(" ", "")
 
-    # Check if am/pm is mentioned, if not use the last one
-    if 'am' not in time_part.lower() and 'pm' not in time_part.lower():
-        if last_am_pm is not None:
-            time_part += last_am_pm
+
+    # Extract time and am/pm part
+    match = re.search(r'(\d+:\d+|\d+)\s*(am|pm)?', item, flags=re.IGNORECASE)
+    if match:
+        time_part = match.group(1)
+        am_pm_part = match.group(2)
+        if am_pm_part is None:
+            if last_am_pm is not None:
+                am_pm_part = last_am_pm
+            else:
+                raise ValueError('The first time must specify AM or PM.')
         else:
-            raise ValueError('The first time must specify AM or PM.')
-    else:
-        # Extract the AM/PM part for future reference
-        last_am_pm = 'am' if 'am' in time_part.lower() else 'pm'
+            # Extract the AM/PM part for future reference
+            last_am_pm = 'am' if 'am' in am_pm_part.lower() else 'pm'
 
-    start_time = parse(time_part + " EDT")  # adjust the timezone here
+        start_time = parse(time_part + am_pm_part + " EDT")  # adjust the timezone here
+    else:
+        raise ValueError(f"Unable to parse time from: {item}")
+
+
 
     # If the time is "12:00am", add one day to the date
     if time_part == '12:00am':
@@ -84,13 +89,13 @@ for item in data:
 
         # Do the replacement based on the duration type
         if duration_type == 'hour':
-            title = item.replace(parts[0], '').replace('for ' + str(duration_val) + ' ' + duration_type, '').replace(last_am_pm, '').strip()
+            title = item.replace(time_part, '').replace('for ' + str(duration_val) + ' ' + duration_type, '').replace(last_am_pm, '').strip()
         else:
-            title = item.replace(parts[0], '').replace('for ' + str(duration_val) + ' ' + duration_type, '').replace(last_am_pm, '').strip()
+            title = item.replace(time_part, '').replace('for ' + str(duration_val) + ' ' + duration_type, '').replace(last_am_pm, '').strip()
     except (ValueError, AttributeError):
         # If it's not a duration, it's part of the title
         duration = None
-        title = item.replace(parts[0], '').replace(last_am_pm, '').strip()
+        title = item.replace(time_part, '').replace(last_am_pm, '').strip()
 
     # Create a new event and add it to the list
     e = Event()
