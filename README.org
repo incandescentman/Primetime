@@ -1,12 +1,30 @@
 * Time Blocking Script
-This is a Python script to help with time blocking. The script takes a schedule as input, creates a calendar of events based on the schedule, and saves it as an .ics file.
+A Python script to streamline time blocking. It takes a user's schedule in text form, interprets each line as an event, and converts it into an .ics file for easy import into any calendar application.
 
 ** Development
 Code created by ChatGPT 4:
 
-https://sharegpt.com/c/kVx0UPR
+https://chat.openai.com/share/f7432fc0-989d-4448-b2ca-6651cf2c5406
 
 https://chat.openai.com/share/e81b8a11-e881-438e-96b6-ba350d979fff
+
+** Purpose
+Time blocking is a time management technique that involves dividing your day into blocks of time, each dedicated to accomplishing a specific task or set of tasks. This technique is based on the premise that we can be more efficient and productive if we focus on one task at a time, rather than multi-tasking or constantly switching between tasks.
+
+In practice, time blocking involves planning your day in advance, usually by listing all of the tasks you need to complete and then assigning a specific time slot for each task. For example, you might block off 9 am - 11 am for writing a report, 11 am - 12 pm for responding to emails, 1 pm - 2 pm for a meeting, and so on.
+
+Time blocking can help you manage your time more efficiently, reduce distractions and interruptions, and ensure that high-priority tasks get the attention they deserve. It also provides a clear structure for your day, which can reduce stress and decision fatigue.
+
+Time blocking is different from time boxing.
+
+Time blocking and time boxing are both time management techniques, and while they have some similarities, they differ in key ways:
+
+1. **Time Blocking:** This method involves scheduling specific tasks to be done within certain periods (or blocks) of time throughout your day. For instance, you might schedule 8:00 AM - 10:00 AM for writing, 10:00 AM - 11:00 AM for responding to emails, etc. The focus here is more on the tasks to be accomplished during each block of time, and these blocks can be adjusted based on the nature and duration of each task.
+
+2. **Time Boxing:** This technique involves allotting a fixed amount of time, or a "box" of time, to each task, after which you move on to the next task whether the current task is completed or not. For example, you could decide to dedicate exactly one hour to brainstorming ideas for a project, after which you would move on to the next task, regardless of whether you've finished brainstorming or not. The primary goal of time boxing is to prevent tasks from dragging on and consuming more time than they should.
+
+Time blocking is about organizing your day into blocks of time dedicated to certain tasks, whereas time boxing is about limiting the amount of time you spend on any given task.
+
 ** Features
 - Takes schedule input either from the clipboard or directly from the console.
 - Parses the schedule to extract the start times, durations, and titles of tasks.
