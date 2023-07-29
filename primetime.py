@@ -39,6 +39,10 @@ if not any(re.match(r'\d+(:\d+)?(am|pm)', line, flags=re.IGNORECASE) for line in
 c = Calendar()
 events = []
 
+
+
+
+
 # Process each line of the clipboard data
 last_am_pm = None
 for item in data:
@@ -51,9 +55,6 @@ for item in data:
 
     # Remove any hyphens from the line
     item = item.replace('-', '').strip()
-
-
-
 
     # Extract time and am/pm part
     match = re.search(r'(\d+:\d+|\d+)\s*(am|pm)?', item, flags=re.IGNORECASE)
@@ -70,6 +71,9 @@ for item in data:
             last_am_pm = 'am' if 'am' in am_pm_part.lower() else 'pm'
 
         start_time = parse(time_part + am_pm_part + " EDT")  # adjust the timezone here
+
+        # Remove the matched time and am/pm part from the item
+        item = item[match.end():].strip()
     else:
         raise ValueError(f"Unable to parse time from: {item}")
 
@@ -89,13 +93,13 @@ for item in data:
 
         # Do the replacement based on the duration type
         if duration_type == 'hour':
-            title = item.replace(time_part, '').replace('for ' + str(duration_val) + ' ' + duration_type, '').replace(last_am_pm, '').strip()
+            title = item.replace('for ' + str(duration_val) + ' ' + duration_type, '').strip()
         else:
-            title = item.replace(time_part, '').replace('for ' + str(duration_val) + ' ' + duration_type, '').replace(last_am_pm, '').strip()
+            title = item.replace('for ' + str(duration_val) + ' ' + duration_type, '').strip()
     except (ValueError, AttributeError):
         # If it's not a duration, it's part of the title
         duration = None
-        title = item.replace(time_part, '').replace(last_am_pm, '').strip()
+        title = item.strip()
 
     # Create a new event and add it to the list
     e = Event()
