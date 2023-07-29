@@ -32,7 +32,7 @@ Time blocking is about organizing your day into blocks of time dedicated to cert
 - Generates a calendar of events based on the provided schedule.
 - Presents the proposed schedule in an easy-to-read format with color-coded elements, aligning the event titles for readability.
 - Prompts for confirmation before saving the schedule to a ~.ics~ file.
-- Automatically opens the .ics file after creation.
+- Automatically opens the ~.ics~ file after creation.
 
 ** Requirements
 Requires the following Python libraries:
@@ -53,15 +53,12 @@ To install and run the script, follow these steps:
 
 1. Clone the repository:
 : git clone https://github.com/incandescentman/primetime.git
-
 2. Navigate to the repository directory:
 : cd primetime
-
 3. Ensure you have the required Python libraries. You can install them with pip:
 #+begin_src sh
 pip install pyperclip ics python-dateutil termcolor
 #+end_src
-
 4. Run the script:
   python time_blocking.py
 
