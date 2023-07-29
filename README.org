@@ -96,6 +96,6 @@ Or this format:
 
 Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the subsequent event's start time or at the next hour if it's the last event.
 
-The script assumes all events take place today, before midnight.
+The script assumes all events take place today, before midnight. Midnight itself (12:00am) gets parsed as midnight tonight, not midnight last night.
 
-After entering your schedule, hit RETURN twice to signal the end of input. The script will then present the proposed schedule and prompt for your confirmation. If you confirm, it will save the schedule as an .ics file and open it.
+After entering your schedule, hit RETURN twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm. If you confirm, it will then save the schedule as a ~.ics~ file and open it.
