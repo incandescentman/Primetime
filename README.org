@@ -19,9 +19,9 @@ Time blocking can help you manage your time more efficiently, reduce distraction
 
 Time blocking is different from time boxing.
 
-1. **Time Blocking:** This method involves scheduling specific tasks to be done within certain periods (or blocks) of time throughout your day. For instance, you might schedule 8:00 AM - 10:00 AM for writing, 10:00 AM - 11:00 AM for responding to emails, etc. The focus here is more on the tasks to be accomplished during each block of time, and these blocks can be adjusted based on the nature and duration of each task.
+1. *Time Blocking:* This method involves scheduling specific tasks to be done within certain periods (or blocks) of time throughout your day. For instance, you might schedule 8:00 AM - 10:00 AM for writing, 10:00 AM - 11:00 AM for responding to emails, etc. The focus here is more on the tasks to be accomplished during each block of time, and these blocks can be adjusted based on the nature and duration of each task.
 
-2. **Time Boxing:** This technique involves allotting a fixed amount of time, or a "box" of time, to each task, after which you move on to the next task whether the current task is completed or not. For example, you could decide to dedicate exactly one hour to brainstorming ideas for a project, after which you would move on to the next task, regardless of whether you've finished brainstorming or not. The primary goal of time boxing is to prevent tasks from dragging on and consuming more time than they should.
+2. *Time Boxing:* This technique involves allotting a fixed amount of time, or a "box" of time, to each task, after which you move on to the next task whether the current task is completed or not. For example, you could decide to dedicate exactly one hour to brainstorming ideas for a project, after which you would move on to the next task, regardless of whether you've finished brainstorming or not. The primary goal of time boxing is to prevent tasks from dragging on and consuming more time than they should.
 
 Time blocking is about organizing your day into blocks of time dedicated to certain tasks, whereas time boxing is about limiting the amount of time you spend on any given task.
 
