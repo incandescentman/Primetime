@@ -1,5 +1,5 @@
 * Primetime: Text-Based Time Blocking
-Primetime is a Python script to streamline time blocking. It accepts a user's schedule in text form, interprets each line as an event, and transforms it into an .ics file for seamless import into any calendar app.
+Primetime is a Python script to streamline time blocking. It accepts a user's schedule in text form, interprets each line as an event, and transforms it into a ~.ics~ file for seamless import into any calendar app.
 
 [[ https://github.com/incandescentman/primetime/raw/main/screenshot.png][file:screenshot.png]]
 
@@ -31,7 +31,7 @@ Time blocking is about organizing your day into blocks of time dedicated to cert
 - Accommodates variations in the input format, such as the absence of "am/pm" or a preceding space before "am/pm".
 - Generates a calendar of events based on the provided schedule.
 - Presents the proposed schedule in an easy-to-read format with color-coded elements, aligning the event titles for readability.
-- Prompts for confirmation before saving the schedule to an .ics file.
+- Prompts for confirmation before saving the schedule to a ~.ics~ file.
 - Automatically opens the .ics file after creation.
 
 ** Requirements
