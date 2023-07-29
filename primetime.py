@@ -151,7 +151,8 @@ for event in sorted_events:
     hour, rest = time_str.split(':')
     time_str = (' ' + hour if len(hour) < 2 else hour) + ':' + rest
     title_str = event.name.ljust(max_length)
-    print(colored(time_str, 'white') + ": " + colored(title_str, 'green') + " " + colored(duration_str, 'red'))
+    print(colored(time_str, 'white') + "  " + colored(title_str, 'green') + "  " + colored(duration_str, 'red'))
+
 
 # Ask the user to confirm
 print("\nDoes the schedule look good? (y/N) ")
