@@ -1,0 +1,68 @@
+* Time Blocking Script
+This is a Python script to help with time blocking. The script takes a schedule as input, creates a calendar of events based on the schedule, and saves it as an .ics file.
+
+** Development
+Code created by ChatGPT 4:
+
+https://sharegpt.com/c/kVx0UPR
+
+https://chat.openai.com/share/e81b8a11-e881-438e-96b6-ba350d979fff
+** Features
+- Takes schedule input either from the clipboard or directly from the console.
+- Parses the schedule to extract the start times, durations, and titles of tasks.
+- Handles variations in the input format, like the absence of "am/pm" or the presence of a space before "am/pm".
+- Creates a calendar of events based on the schedule.
+- Displays the proposed schedule in a readable format with color-coded elements, and neatly aligns the event titles.
+- Asks for confirmation before saving the schedule to an .ics file.
+- Opens the .ics file automatically after it's been created.
+
+** Installation
+To install and run the script, follow these steps:
+
+1. Clone the repository:
+  git clone <repository_url>
+
+2. Navigate to the repository directory:
+  cd <repository_directory>
+
+3. Ensure you have the required Python libraries. You can install them with pip:
+  pip install pyperclip ics python-dateutil termcolor
+
+4. Run the script:
+  python time_blocking.py
+
+** Usage
+Run the script and paste your schedule when prompted, or copy your schedule to the clipboard before running the script.
+
+The schedule should be in the following format:
+
+#+BEGIN_EXAMPLE
+6:30pm work on book 30 minutes
+7pm go to gym
+8:30 pm meditate
+9pm shower
+9:30pm meet Jenny
+10:00 comedy show
+11 get a drink
+11:30 pm go home
+#+END_EXAMPLE
+
+Or this format:
+
+#+BEGIN_EXAMPLE
+5:00pm - Work on book for 90 minutes
+6:30pm - Meditate for 30 minutes
+7:00pm - Cook for 1 hour
+8:00pm - Take a shower
+8:30pm - Clean apartment
+10:00pm - Prepare for comedy show
+10:30pm - Attend comedy show
+12:00am - Reflect on day, plan tomorrow
+#+END_EXAMPLE
+
+
+Each line represents a single event. The event's start time should be first, followed by the event's title. If you want to specify the event's duration, add it at the end of the line in the format "X minutes", where X is the duration in minutes. If no duration is specified for an event, the script assumes the event ends 10 minutes before the start of the next event, or at the next hour if it's the last event.
+
+The script assumes all events take place today, before midnight.
+
+After pasting your schedule, hit RETURN twice to signal the end of input. The script will display the proposed schedule and ask for your confirmation. If you confirm, it will save the schedule to an .ics file and open it.
