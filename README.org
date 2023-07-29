@@ -1,5 +1,5 @@
 * Time Blocking Script
-A Python script to streamline time blocking. It takes a user's schedule in text form, interprets each line as an event, and converts it into an .ics file for easy import into any calendar application.
+A Python script to streamline time blocking. It accepts a user's schedule in text form, interprets each line as an event, and transforms it into an .ics file for seamless import into any calendar app.
 
 ** Development
 Code created by ChatGPT 4:
@@ -9,15 +9,13 @@ https://chat.openai.com/share/f7432fc0-989d-4448-b2ca-6651cf2c5406
 https://chat.openai.com/share/e81b8a11-e881-438e-96b6-ba350d979fff
 
 ** Purpose
-Time blocking is a time management technique that involves dividing your day into blocks of time, each dedicated to accomplishing a specific task or set of tasks. This technique is based on the premise that we can be more efficient and productive if we focus on one task at a time, rather than multi-tasking or constantly switching between tasks.
+Time blocking is a time management technique that involves dividing your day into blocks of time, each dedicated to a specific task. Basically, it's about calendaring your to-do list.
 
 In practice, time blocking involves planning your day in advance, usually by listing all of the tasks you need to complete and then assigning a specific time slot for each task. For example, you might block off 9 am - 11 am for writing a report, 11 am - 12 pm for responding to emails, 1 pm - 2 pm for a meeting, and so on.
 
 Time blocking can help you manage your time more efficiently, reduce distractions and interruptions, and ensure that high-priority tasks get the attention they deserve. It also provides a clear structure for your day, which can reduce stress and decision fatigue.
 
 Time blocking is different from time boxing.
-
-Time blocking and time boxing are both time management techniques, and while they have some similarities, they differ in key ways:
 
 1. **Time Blocking:** This method involves scheduling specific tasks to be done within certain periods (or blocks) of time throughout your day. For instance, you might schedule 8:00 AM - 10:00 AM for writing, 10:00 AM - 11:00 AM for responding to emails, etc. The focus here is more on the tasks to be accomplished during each block of time, and these blocks can be adjusted based on the nature and duration of each task.
 
@@ -26,33 +24,49 @@ Time blocking and time boxing are both time management techniques, and while the
 Time blocking is about organizing your day into blocks of time dedicated to certain tasks, whereas time boxing is about limiting the amount of time you spend on any given task.
 
 ** Features
-- Takes schedule input either from the clipboard or directly from the console.
-- Parses the schedule to extract the start times, durations, and titles of tasks.
-- Handles variations in the input format, like the absence of "am/pm" or the presence of a space before "am/pm".
-- Creates a calendar of events based on the schedule.
-- Displays the proposed schedule in a readable format with color-coded elements, and neatly aligns the event titles.
-- Asks for confirmation before saving the schedule to an .ics file.
-- Opens the .ics file automatically after it's been created.
+- Accepts schedule input from the clipboard or directly via the console.
+- Parses the schedule to extract task start times, durations, and titles.
+- Accommodates variations in the input format, such as the absence of "am/pm" or a preceding space before "am/pm".
+- Generates a calendar of events based on the provided schedule.
+- Presents the proposed schedule in an easy-to-read format with color-coded elements, aligning the event titles for readability.
+- Prompts for confirmation before saving the schedule to an .ics file.
+- Automatically opens the .ics file after creation.
+
+** Requirements
+Requires the following Python libraries:
+
+- pyperclip
+- ics
+- python-dateutil
+- termcolor
+
+You can install these libraries with pip:
+
+#+begin_src sh
+pip install pyperclip ics python-dateutil termcolor
+#+end_src
 
 ** Installation
 To install and run the script, follow these steps:
 
 1. Clone the repository:
-  git clone <repository_url>
+: git clone https://github.com/incandescentman/primetime.git
 
 2. Navigate to the repository directory:
-  cd <repository_directory>
+: cd primetime
 
 3. Ensure you have the required Python libraries. You can install them with pip:
-  pip install pyperclip ics python-dateutil termcolor
+#+begin_src sh
+pip install pyperclip ics python-dateutil termcolor
+#+end_src
 
 4. Run the script:
   python time_blocking.py
 
 ** Usage
-Run the script and paste your schedule when prompted, or copy your schedule to the clipboard before running the script.
+To use the script, run it and paste your schedule when prompted, or copy your schedule to the clipboard before running the script.
 
-The schedule should be in the following format:
+Your schedule should follow this format:
 
 #+BEGIN_EXAMPLE
 6:30pm work on book 30 minutes
@@ -78,9 +92,8 @@ Or this format:
 12:00am - Reflect on day, plan tomorrow
 #+END_EXAMPLE
 
-
-Each line represents a single event. The event's start time should be first, followed by the event's title. If you want to specify the event's duration, add it at the end of the line in the format "X minutes", where X is the duration in minutes. If no duration is specified for an event, the script assumes the event ends 10 minutes before the start of the next event, or at the next hour if it's the last event.
+Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the subsequent event's start time or at the next hour if it's the last event.
 
 The script assumes all events take place today, before midnight.
 
-After pasting your schedule, hit RETURN twice to signal the end of input. The script will display the proposed schedule and ask for your confirmation. If you confirm, it will save the schedule to an .ics file and open it.
+After entering your schedule, hit RETURN twice to signal the end of input. The script will then present the proposed schedule and prompt for your confirmation. If you confirm, it will save the schedule as an .ics file and open it.
