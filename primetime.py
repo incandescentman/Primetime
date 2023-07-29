@@ -39,10 +39,6 @@ if not any(re.match(r'\d+(:\d+)?(am|pm)', line, flags=re.IGNORECASE) for line in
 c = Calendar()
 events = []
 
-
-
-
-
 # Process each line of the clipboard data
 last_am_pm = None
 for item in data:
@@ -70,14 +66,17 @@ for item in data:
             # Extract the AM/PM part for future reference
             last_am_pm = 'am' if 'am' in am_pm_part.lower() else 'pm'
 
-        start_time = parse(time_part + am_pm_part + " EDT")  # adjust the timezone here
+        if time_part.lower() == 'noon':
+            start_time = parse('12:00pm EDT')
+        elif time_part.lower() == 'midnight':
+            start_time = (parse('12:00am EDT') + timedelta(days=1))
+        else:
+            start_time = parse(time_part + am_pm_part + " EDT") # adjust the timezone here
 
         # Remove the matched time and am/pm part from the item
         item = item[match.end():].strip()
     else:
         raise ValueError(f"Unable to parse time from: {item}")
-
-
 
     # If the time is "12:00am", add one day to the date
     if time_part == '12:00am':
@@ -152,7 +151,6 @@ for event in sorted_events:
     time_str = (' ' + hour if len(hour) < 2 else hour) + ':' + rest
     title_str = event.name.ljust(max_length)
     print(colored(time_str, 'white') + "  " + colored(title_str, 'green') + "  " + colored(duration_str, 'red'))
-
 
 # Ask the user to confirm
 print("\nDoes the schedule look good? (y/N) ")
