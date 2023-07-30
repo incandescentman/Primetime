@@ -1,7 +1,7 @@
 import pyperclip
 from ics import Calendar, Event
 from dateutil.parser import parse
-from datetime import timedelta
+from datetime import datetime, timedelta
 import re
 import sys
 import tty
@@ -41,6 +41,8 @@ events = []
 
 # Process each line of the clipboard data
 last_am_pm = None
+current_time = datetime.now()
+next_day = False
 for item in data:
     # Remove leading and trailing white space
     item = item.strip()
@@ -53,11 +55,11 @@ for item in data:
     item = item.replace('-', '').strip()
 
     # Extract time and am/pm part
-    match = re.search(r'(\d+:\d+|\d+)\s*(am|pm)?', item, flags=re.IGNORECASE)
+    match = re.search(r'(\d+:\d+|\d+|noon|midnight)\s*(am|pm)?', item, flags=re.IGNORECASE)
     if match:
         time_part = match.group(1)
         am_pm_part = match.group(2)
-        if am_pm_part is None:
+        if am_pm_part is None and time_part.lower() not in ['noon', 'midnight']:
             if last_am_pm is not None:
                 am_pm_part = last_am_pm
             else:
@@ -65,22 +67,27 @@ for item in data:
         else:
             # Extract the AM/PM part for future reference
             last_am_pm = 'am' if 'am' in am_pm_part.lower() else 'pm'
+            if last_am_pm == 'am' and 'pm' in am_pm_part.lower():
+                next_day = True
 
         if time_part.lower() == 'noon':
             start_time = parse('12:00pm EDT')
         elif time_part.lower() == 'midnight':
             start_time = (parse('12:00am EDT') + timedelta(days=1))
+            next_day = True
         else:
-            start_time = parse(time_part + am_pm_part + " EDT") # adjust the timezone here
+            start_time = parse(time_part + am_pm_part + " EDT")  # adjust the timezone here
+            if next_day and 'am' in am_pm_part.lower():
+                start_time += timedelta(days=1)
+
+        # If the start time is before the current time, add a day
+        if start_time.time() < current_time.time() and start_time.day == current_time.day:
+            start_time += timedelta(days=1)
 
         # Remove the matched time and am/pm part from the item
         item = item[match.end():].strip()
     else:
         raise ValueError(f"Unable to parse time from: {item}")
-
-    # If the time is "12:00am", add one day to the date
-    if time_part == '12:00am':
-        start_time += timedelta(days=1)
 
     # The last part might be the duration, or it might be part of the title
     try:
@@ -153,7 +160,7 @@ for event in sorted_events:
     print(colored(time_str, 'white') + "  " + colored(title_str, 'green') + "  " + colored(duration_str, 'red'))
 
 # Ask the user to confirm
-print("\nDoes the schedule look good? (y/N) ")
+print("\\nDoes the schedule look good? (y/N) ")
 
 # Get a single character input
 confirm = get_ch()
@@ -162,7 +169,7 @@ confirm = get_ch()
 if confirm.lower() in ["", "y"]:
     with open('timeblocking.ics', 'w') as my_file:
         my_file.writelines(c)
-    print("\nICS file has been created")
+    print("\\nICS file has been created")
 
     # Check the platform and open the file with the default application
     if platform.system() == 'Darwin':  # macOS
@@ -173,4 +180,4 @@ if confirm.lower() in ["", "y"]:
         subprocess.call(('xdg-open', 'timeblocking.ics'))
 
 else:
-    print("\nSchedule not confirmed, exiting without creating ICS file.")
+    print("\\nSchedule not confirmed, exiting without creating ICS file.")
