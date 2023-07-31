@@ -140,9 +140,6 @@ for i, event in enumerate(events):
     # Add the event to the calendar after all modifications
     c.events.add(event)
 
-# Display the proposed schedule
-print("Here's your proposed schedule:")
-
 # Sort the events by start time
 sorted_events = sorted(c.events, key=lambda e: e.begin)
 
@@ -150,7 +147,15 @@ sorted_events = sorted(c.events, key=lambda e: e.begin)
 max_length = max([len(event.name) for event in sorted_events])
 
 # Display the sorted events
+print("Here's your proposed schedule:")
+current_day = sorted_events[0].begin.date()
+next_day_flag = False
 for event in sorted_events:
+    # Check if the event is on the next day
+    if event.begin.date() > current_day and not next_day_flag:
+        print("\n### TOMORROW: ###")
+        next_day_flag = True
+
     total_minutes = event.duration.total_seconds() / 60
     hours, minutes = divmod(total_minutes, 60)
     # Format the duration
@@ -166,6 +171,7 @@ for event in sorted_events:
     time_str = (' ' + hour if len(hour) < 2 else hour) + ':' + rest
     title_str = event.name.ljust(max_length)
     print(colored(time_str, 'white') + "  " + colored(title_str, 'green') + "  " + colored(duration_str, 'red'))
+
 
 # Ask the user to confirm
 print("\nDoes the schedule look good? (y/N) ")
