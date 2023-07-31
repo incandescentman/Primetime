@@ -43,6 +43,11 @@ events = []
 last_am_pm = None
 current_time = datetime.now()
 next_day = False
+
+# Initialize previous_time with the time of the first event
+time_string = re.search(r'\d+:\d+\s*(am|pm)', data[0], flags=re.IGNORECASE).group()
+previous_time = parse(time_string + " EDT")  # adjust the timezone here
+
 for item in data:
     # Remove leading and trailing white space
     item = item.strip()
@@ -80,9 +85,12 @@ for item in data:
             if next_day and 'am' in am_pm_part.lower():
                 start_time += timedelta(days=1)
 
-        # If the start time is before the current time, add a day
-        if start_time.time() < current_time.time() and start_time.day == current_time.day:
+        # If the start time is before the previous time, add a day
+        if start_time < previous_time:
             start_time += timedelta(days=1)
+
+        # Update previous_time
+        previous_time = start_time
 
         # Remove the matched time and am/pm part from the item
         item = item[match.end():].strip()
@@ -160,7 +168,7 @@ for event in sorted_events:
     print(colored(time_str, 'white') + "  " + colored(title_str, 'green') + "  " + colored(duration_str, 'red'))
 
 # Ask the user to confirm
-print("\\nDoes the schedule look good? (y/N) ")
+print("\nDoes the schedule look good? (y/N) ")
 
 # Get a single character input
 confirm = get_ch()
@@ -169,7 +177,7 @@ confirm = get_ch()
 if confirm.lower() in ["", "y"]:
     with open('timeblocking.ics', 'w') as my_file:
         my_file.writelines(c)
-    print("\\nICS file has been created")
+    print("\nICS file has been created")
 
     # Check the platform and open the file with the default application
     if platform.system() == 'Darwin':  # macOS
@@ -180,4 +188,4 @@ if confirm.lower() in ["", "y"]:
         subprocess.call(('xdg-open', 'timeblocking.ics'))
 
 else:
-    print("\\nSchedule not confirmed, exiting without creating ICS file.")
+    print("\nSchedule not confirmed, exiting without creating ICS file.")
