@@ -153,7 +153,7 @@ next_day_flag = False
 for event in sorted_events:
     # Check if the event is on the next day
     if event.begin.date() > current_day and not next_day_flag:
-        print("\n### TOMORROW: ###")
+        print("\n" + colored("### TOMORROW:", 'white'))
         next_day_flag = True
 
     total_minutes = event.duration.total_seconds() / 60

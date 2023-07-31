@@ -10,6 +10,10 @@ https://chat.openai.com/share/f7432fc0-989d-4448-b2ca-6651cf2c5406
 
 https://chat.openai.com/share/e81b8a11-e881-438e-96b6-ba350d979fff
 
+https://chat.openai.com/share/d2ed0019-c2fa-42b5-8924-8c26ea4f9568
+
+https://chat.openai.com/share/c5b6cee1-5498-4487-90c9-e68b204d70ce
+
 I developed this script partly because I needed it and partly to demonstrate my process for using AI to generate code as a non-programmer.
 
 ** Purpose
@@ -40,12 +44,12 @@ Time blocking is about organizing your day into blocks of time dedicated to cert
 ** Requirements
 Requires the following Python libraries:
 
-- pyperclip
-- ics
-- python-dateutil
-- termcolor
+- ~pyperclip~
+- ~ics~
+- ~python-dateutil~
+- ~termcolor~
 
-You can install these libraries with pip:
+You can install these libraries with pip suchlike:
 
 #+begin_src sh
 pip install pyperclip ics python-dateutil termcolor
@@ -94,10 +98,10 @@ Or this:
 12:00am - Reflect on day, plan tomorrow
 #+END_EXAMPLE
 
-Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the subsequent event's start time or at the next hour if it's the last event.
+Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the next event's start time --- or at the turn of the hour if it's the last event.
 
-The script assumes all events take place today, before midnight. Midnight itself (12:00am) gets parsed as midnight tonight, not midnight last night.
+The script assumes the first event take place today before midnight. Midnight itself (12:00am) gets parsed as midnight tonight, not midnight last night.
 
-The script now finally correctly interprets events that have already occurred today, as well as events that occur after midnight. For instance, if it is currently 2:20am and the first event in your schedule is "12:30am worked on book", the script will recognize this event as having already occurred. Similarly, if an event is listed as "12:30am", it will be interpreted as occurring after midnight on the current day, not the next day.
+The script now finally accepts events that have already occurred today, as well as events that occur after midnight. So for example if it's currently 2:30pm and the first event is "12:30pm worked on book," the script recognizes this event as having already occurred
 
-After entering your schedule, hit RETURN twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm. If you confirm, it will then save the schedule as a ~.ics~ file and open it.
+After entering your schedule, hit ~RETURN~ twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm. If you confirm, it will then save the schedule as a ~.ics~ file and open it automatically. 🤯
