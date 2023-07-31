@@ -35,6 +35,7 @@ Time blocking is about organizing your day into blocks of time dedicated to cert
 - Presents the proposed schedule in an easy-to-read format with color-coded elements, aligning the event titles for readability.
 - Prompts for confirmation before saving the schedule to a ~.ics~ file.
 - Automatically opens the ~.ics~ file after creation.
+- Correctly interprets and handles events that have already occurred today, as well as events happening after midnight.
 
 ** Requirements
 Requires the following Python libraries:
@@ -96,5 +97,7 @@ Or this:
 Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the subsequent event's start time or at the next hour if it's the last event.
 
 The script assumes all events take place today, before midnight. Midnight itself (12:00am) gets parsed as midnight tonight, not midnight last night.
+
+The script now finally correctly interprets events that have already occurred today, as well as events that occur after midnight. For instance, if it is currently 2:20am and the first event in your schedule is "12:30am worked on book", the script will recognize this event as having already occurred. Similarly, if an event is listed as "12:30am", it will be interpreted as occurring after midnight on the current day, not the next day.
 
 After entering your schedule, hit RETURN twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm. If you confirm, it will then save the schedule as a ~.ics~ file and open it.
