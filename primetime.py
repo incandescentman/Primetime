@@ -146,13 +146,15 @@ sorted_events = sorted(c.events, key=lambda e: e.begin)
 # Find the maximum length of the event names for alignment
 max_length = max([len(event.name) for event in sorted_events])
 
+
 # Display the sorted events
 print("Here's your proposed schedule:")
 current_day = sorted_events[0].begin.date()
 next_day_flag = False
+next_day_start_time = parse('4:00am EDT') + timedelta(days=1)  # adjust the timezone here
 for event in sorted_events:
     # Check if the event is on the next day
-    if event.begin.date() > current_day and not next_day_flag:
+    if event.begin >= next_day_start_time and not next_day_flag:
         print("\n" + colored("### TOMORROW:", 'white'))
         next_day_flag = True
 
