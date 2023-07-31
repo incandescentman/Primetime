@@ -49,7 +49,7 @@ Requires the following Python libraries:
 - ~python-dateutil~
 - ~termcolor~
 
-You can install these libraries with pip suchlike:
+You can install these libraries with pip in this fashion:
 
 #+begin_src sh
 pip install pyperclip ics python-dateutil termcolor
@@ -85,6 +85,8 @@ Your schedule should roughly follow this format:
 11:30 pm go home
 #+END_EXAMPLE
 
+[[ https://github.com/incandescentman/primetime/raw/main/screenshot-2.png][file:screenshot-2.png]]
+
 Or this:
 
 #+BEGIN_EXAMPLE
@@ -97,6 +99,8 @@ Or this:
 10:30pm - Attend comedy show
 12:00am - Reflect on day, plan tomorrow
 #+END_EXAMPLE
+
+[[ https://github.com/incandescentman/primetime/raw/main/screenshot-3.png][file:screenshot-3.png]]
 
 Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the next event's start time --- or at the turn of the hour if it's the last event.
 
