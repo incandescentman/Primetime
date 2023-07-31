@@ -108,19 +108,10 @@ The script assumes the first event take place today before midnight. Midnight it
 
 The script now finally accepts events that have already occurred today, as well as events that occur after midnight. So for example if it's currently 2:30pm and the first event is "12:30pm worked on book," the script recognizes this event as having already occurred.
 
-The script can accept events happening tomorrow. So for instance, if the input includes "11pm go to sleep, 9am wake up", the second event will automatically be parsed as tomorrow and added to your calendar for tomorrow, since the only 9am that occurs after 11pm, definitionally, takes place tomorrow.
+The script automatically recognizes that events scheduled after midnight are considered, for the purposes of your calendar app, to occur the next day. So if your schedule includes "11pm go to sleep" and "9am wake up", the "9am wake up" event will automatically be scheduled for the next day, as it is the only 9am that occurs after 11pm.
 
-If it's not clear from the start times that an event is taking place tomorrow, you can prepend the word "tomorrow" before an event to indicate that it takes place tomorrow. For example:
-
-#+begin_example
-2pm work on book
-tomorrow 3pm drive to New Haven
-#+end_example
-
-Events marked as "tomorrow" are considered to occur on the next day regardless of their time.
+If it's not clear from the start times that an event is taking place tomorrow, you can prepend the word "tomorrow" before the event (e.g., "tomorrow 3pm drive to New Haven"). Events prepended with "tomorrow" are considered to occur the next day regardless of their time.
 
 In the terminal display of your schedule, events occurring between 12:00am and 4:00am will not be labeled as "tomorrow", since they are typically completed before going to sleep. Events starting at or after 4:00am will be labeled as "tomorrow".
-
-
 
 After entering your schedule, hit ~RETURN~ twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm. If you confirm, it will then save the schedule as a ~.ics~ file and open it automatically. 🤯
