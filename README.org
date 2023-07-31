@@ -14,7 +14,7 @@ https://chat.openai.com/share/d2ed0019-c2fa-42b5-8924-8c26ea4f9568
 
 https://chat.openai.com/share/c5b6cee1-5498-4487-90c9-e68b204d70ce
 
-I developed this script partly because I needed it and partly to demonstrate my process for using AI to generate code as a non-programmer.
+I developed this script partly because I needed it but mostly to demonstrate my process, as a non-programmer, for using AI to generate code.
 
 ** Purpose
 Time blocking is a time management technique that involves dividing your day into blocks of time, each dedicated to a specific task. Basically, it's about calendaring your to-do list.
