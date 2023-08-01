@@ -25,7 +25,7 @@ def get_ch():
 data = pyperclip.paste().split('\n')
 
 # If clipboard data doesn't seem to contain a valid schedule, ask for input
-if not any(re.match(r'\d+(:\d+)?(am|pm)', line, flags=re.IGNORECASE) for line in data):
+if not any(re.match(r'\d+(:\d+)?(am|pm)|noon|midnight', line, flags=re.IGNORECASE) for line in data):
     print("Please paste your schedule (then press RETURN twice):")
     data = []
     while True:
@@ -53,7 +53,7 @@ for item in data:
     item = item.strip()
 
     # If the line doesn't start with a time, ignore it
-    if not re.match(r'\d+', item):
+    if not re.match(r'\d+|noon|midnight', item):
         continue
 
     # Remove any hyphens from the line
@@ -69,7 +69,7 @@ for item in data:
                 am_pm_part = last_am_pm
             else:
                 raise ValueError('The first time must specify AM or PM.')
-        else:
+        elif am_pm_part is not None:
             # Extract the AM/PM part for future reference
             last_am_pm = 'am' if 'am' in am_pm_part.lower() else 'pm'
             if last_am_pm == 'am' and 'pm' in am_pm_part.lower():
@@ -192,6 +192,5 @@ if confirm.lower() in ["", "y"]:
         subprocess.call(('start', 'timeblocking.ics'), shell=True)
     else:  # linux variants
         subprocess.call(('xdg-open', 'timeblocking.ics'))
-
 else:
     print("\nSchedule not confirmed, exiting without creating ICS file.")
