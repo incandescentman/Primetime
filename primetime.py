@@ -46,6 +46,10 @@ next_day = False
 
 # Initialize previous_time with the time of the first event
 time_string = re.search(r'(\d+:\d+|\d+|noon|midnight)(am|pm)?', data[0], flags=re.IGNORECASE).group()
+if "noon" in time_string.lower():
+    time_string = "12:00pm"
+elif "midnight" in time_string.lower():
+    time_string = "12:00am"
 previous_time = parse(time_string + " EDT")  # adjust the timezone here
 
 for item in data:
@@ -76,9 +80,9 @@ for item in data:
                 next_day = True
 
         if time_part.lower() == 'noon':
-            start_time = parse('12:00pm EDT')
+            start_time = parse('12:00pm EDT')  # adjust the timezone here
         elif time_part.lower() == 'midnight':
-            start_time = (parse('12:00am EDT') + timedelta(days=1))
+            start_time = parse('12:00am EDT')  # adjust the timezone here
             next_day = True
         else:
             start_time = parse(time_part + am_pm_part + " EDT")  # adjust the timezone here

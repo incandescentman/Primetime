@@ -12,7 +12,7 @@ https://chat.openai.com/share/e81b8a11-e881-438e-96b6-ba350d979fff
 
 https://chat.openai.com/share/d2ed0019-c2fa-42b5-8924-8c26ea4f9568
 
-https://chat.openai.com/share/c5b6cee1-5498-4487-90c9-e68b204d70ce
+https://chat.openai.com/share/8e1b72e6-ceaa-4268-8b1f-3a4c054850e1
 
 I developed this script partly because I needed it but mostly to demonstrate my process, as a non-programmer, for using AI to generate code.
 
@@ -28,6 +28,9 @@ Time blocking is different from time boxing.
 1. *Time Blocking:* This method involves scheduling specific tasks to be done within certain periods (or blocks) of time throughout your day. For instance, you might schedule 8:00 AM - 10:00 AM for writing, 10:00 AM - 11:00 AM for responding to emails, etc. The focus here is more on the tasks to be accomplished during each block of time, and these blocks can be adjusted based on the nature and duration of each task.
 
 2. *Time Boxing:* This technique involves allotting a fixed amount of time, or a "box" of time, to each task, after which you move on to the next task whether the current task is completed or not. For example, you could decide to dedicate exactly one hour to brainstorming ideas for a project, after which you would move on to the next task, regardless of whether you've finished brainstorming or not. The primary goal of time boxing is to prevent tasks from dragging on and consuming more time than they should.
+
+https://assets-global.website-files.com/608aecd1e643ecaa961a7a67/635bd94d968178767885fa30_time%20blocking%2001.png
+Source: [[https://workflowy.com/systems/time-blocking/][Time blocking - Workflowy guide]]
 
 Time blocking is about organizing your day into blocks of time dedicated to certain tasks, whereas time boxing is about limiting the amount of time you spend on any given task.
 
