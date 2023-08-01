@@ -45,7 +45,7 @@ current_time = datetime.now()
 next_day = False
 
 # Initialize previous_time with the time of the first event
-time_string = re.search(r'(\d+:\d+|\d+)(am|pm)?', data[0], flags=re.IGNORECASE).group()
+time_string = re.search(r'(\d+:\d+|\d+|noon|midnight)(am|pm)?', data[0], flags=re.IGNORECASE).group()
 previous_time = parse(time_string + " EDT")  # adjust the timezone here
 
 for item in data:
@@ -60,7 +60,7 @@ for item in data:
     item = item.replace('-', '').strip()
 
     # Extract time and am/pm part
-    match = re.search(r'(\d+:\d+|\d+)(am|pm)?', item, flags=re.IGNORECASE)
+    match = re.search(r'(\d+:\d+|\d+|noon|midnight)(am|pm)?', item, flags=re.IGNORECASE)
     if match:
         time_part = match.group(1)
         am_pm_part = match.group(2)
