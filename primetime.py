@@ -45,7 +45,7 @@ current_time = datetime.now()
 next_day = False
 
 # Initialize previous_time with the time of the first event
-time_string = re.search(r'\d+:\d+\s*(am|pm)', data[0], flags=re.IGNORECASE).group()
+time_string = re.search(r'(\d+:\d+|\d+)(am|pm)?', data[0], flags=re.IGNORECASE).group()
 previous_time = parse(time_string + " EDT")  # adjust the timezone here
 
 for item in data:
@@ -60,7 +60,7 @@ for item in data:
     item = item.replace('-', '').strip()
 
     # Extract time and am/pm part
-    match = re.search(r'(\d+:\d+|\d+|noon|midnight)\s*(am|pm)?', item, flags=re.IGNORECASE)
+    match = re.search(r'(\d+:\d+|\d+)(am|pm)?', item, flags=re.IGNORECASE)
     if match:
         time_part = match.group(1)
         am_pm_part = match.group(2)
@@ -146,7 +146,6 @@ sorted_events = sorted(c.events, key=lambda e: e.begin)
 # Find the maximum length of the event names for alignment
 max_length = max([len(event.name) for event in sorted_events])
 
-
 # Display the sorted events
 print("Here's your proposed schedule:")
 current_day = sorted_events[0].begin.date()
@@ -173,7 +172,6 @@ for event in sorted_events:
     time_str = (' ' + hour if len(hour) < 2 else hour) + ':' + rest
     title_str = event.name.ljust(max_length)
     print(colored(time_str, 'white') + "  " + colored(title_str, 'green') + "  " + colored(duration_str, 'red'))
-
 
 # Ask the user to confirm
 print("\nDoes the schedule look good? (y/N) ")
