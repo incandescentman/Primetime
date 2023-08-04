@@ -1,7 +1,7 @@
 * Primetime: Text-Based Time Blocking
 Primetime is a Python script to streamline time blocking. It accepts a user's schedule in text form, interprets each line as an event, and transforms it into a ~.ics~ file for seamless import into any calendar app.
 
-[[ https://github.com/incandescentman/primetime/raw/main/screenshot.png][file:screenshot.png]]
+[[ https://github.com/incandescentman/~Primetime~/raw/main/screenshot.png][file:screenshot.png]]
 
 ** Development
 Code created by ChatGPT 4:
@@ -75,7 +75,10 @@ Run the script:
 ** Usage
 To use the script, run it and paste your schedule when prompted, or copy your schedule to the clipboard before running the script.
 
-Your schedule should roughly follow this format:
+*** Text-based time blocking
+Part of the premise of ~Primetime~ is that you don't need [[https://github.com/strang1ato/tibivi][some complicated interface]] to chart out your day and block out times for each task. You can just type out your agenda and let the script do the work of parsing it and importing it into your calendar.
+
+Each line should start by specifying a time of day and the task you want to work on at that time. So your schedule should roughly follow this format:
 
 #+BEGIN_EXAMPLE
 6:30pm work on book 30 minutes
@@ -88,9 +91,9 @@ Your schedule should roughly follow this format:
 11:30 pm go home
 #+END_EXAMPLE
 
-[[ https://github.com/incandescentman/primetime/raw/main/screenshot-2.png][file:screenshot-2.png]]
+[[ https://github.com/incandescentman/~Primetime~/raw/main/screenshot-2.png][file:screenshot-2.png]]
 
-Or this:
+Or this format:
 
 #+BEGIN_EXAMPLE
 5:00pm - Work on book for 90 minutes
@@ -103,18 +106,25 @@ Or this:
 12:00am - Reflect on day, plan tomorrow
 #+END_EXAMPLE
 
-[[ https://github.com/incandescentman/primetime/raw/main/screenshot-3.png][file:screenshot-3.png]]
+[[ https://github.com/incandescentman/~Primetime~/raw/main/screenshot-3.png][file:screenshot-3.png]]
 
-Each line should represent a single event. The event's start time should precede its title. If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified for an event, the script presumes the event concludes 10 minutes before the next event's start time --- or at the turn of the hour if it's the last event.
+One task per line, with the event's start time preceding its title.
 
-The script assumes the first event take place today before midnight. Midnight itself (12:00am) gets parsed as midnight tonight, not midnight last night.
+If you want to specify the event's duration, add it at the end of the line in the "X minutes" format, where X represents the duration in minutes. If no duration is specified, the script will end the event 10 minutes before the start of the next one. (Or at the turn of the hour if it's the last event.)
 
-The script now finally accepts events that have already occurred today, as well as events that occur after midnight. So for example if it's currently 2:30pm and the first event is "12:30pm worked on book," the script recognizes this event as having already occurred.
+The script assumes that the first event takes place today unless you explicitly type "tomorrow." Midnight (12:00am) gets parsed as midnight tonight, not midnight last night.
 
-The script automatically recognizes that events scheduled after midnight are considered, for the purposes of your calendar app, to occur the next day. So if your schedule includes "11pm go to sleep" and "9am wake up", the "9am wake up" event will automatically be scheduled for the next day, as it is the only 9am that occurs after 11pm.
+The script accepts events that have already occurred today, as well as events that occur after midnight. So if it's currently 2:30pm and the first event is "12:30pm worked on book," the script recognizes this event as having already occurred and it's no problem.
+
+Events after midnight are considered (for the purposes of your calendar app) to occur the next day (e.g. "9am + 1 day"). So if your schedule includes "11pm go to sleep" and "9am wake up", the "9am wake up" event will automatically be scheduled for the next day, since that's the only 9am that occurs after 11pm. (And since ~Primetime~ doesn't support events that take place after tomorrow.)
 
 If it's not clear from the start times that an event is taking place tomorrow, you can prepend the word "tomorrow" before the event (e.g., "tomorrow 3pm drive to New Haven"). Events prepended with "tomorrow" are considered to occur the next day regardless of their time.
 
+After entering your schedule, hit ~RETURN~ twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm.
+
 In the terminal display of your schedule, events occurring between 12:00am and 4:00am will not be labeled as "tomorrow", since they are typically completed before going to sleep. Events starting at or after 4:00am will be labeled as "tomorrow".
 
-After entering your schedule, hit ~RETURN~ twice to signal the end of input. The script will then present the proposed schedule and prompt you to confirm. If you confirm, it will then save the schedule as a ~.ics~ file and open it automatically. 🤯
+If you confirm the proposed schedule, ~Primetime~ will then generate an ~.ics~ file for you and open it automatically. 🤯
+
+** Contributing
+Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/incandescentman/~Primetime~][GitHub repository]].
