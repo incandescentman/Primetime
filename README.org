@@ -1,7 +1,7 @@
 * Primetime: Text-Based Time Blocking
 Primetime is a Python script to streamline time blocking. It accepts a user's schedule in text form, interprets each line as an event, and transforms it into a ~.ics~ file for seamless import into any calendar app.
 
-[[ https://github.com/incandescentman/~Primetime~/raw/main/screenshot.png][file:screenshot.png]]
+[[ https://github.com/incandescentman/primetime/raw/main/screenshot.png][file:screenshot.png]]
 
 ** Development
 Code created by ChatGPT 4:
@@ -91,7 +91,7 @@ Each line should start by specifying a time of day and the task you want to work
 11:30 pm go home
 #+END_EXAMPLE
 
-[[ https://github.com/incandescentman/~Primetime~/raw/main/screenshot-2.png][file:screenshot-2.png]]
+[[ https://github.com/incandescentman/primetime/raw/main/screenshot-2.png][file:screenshot-2.png]]
 
 Or this format:
 
@@ -106,7 +106,7 @@ Or this format:
 12:00am - Reflect on day, plan tomorrow
 #+END_EXAMPLE
 
-[[ https://github.com/incandescentman/~Primetime~/raw/main/screenshot-3.png][file:screenshot-3.png]]
+[[ https://github.com/incandescentman/primetime/raw/main/screenshot-3.png][file:screenshot-3.png]]
 
 One task per line, with the event's start time preceding its title.
 
@@ -127,4 +127,4 @@ In the terminal display of your schedule, events occurring between 12:00am and 4
 If you confirm the proposed schedule, ~Primetime~ will then generate an ~.ics~ file for you and open it automatically. 🤯
 
 ** Contributing
-Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/incandescentman/~Primetime~][GitHub repository]].
+Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/incandescentman/primetime][GitHub repository]].
