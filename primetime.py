@@ -102,17 +102,18 @@ for item in data:
         raise ValueError(f"Unable to parse time from: {item}")
 
 
+    # ...
 
     # The last part might be the duration, or it might be part of the title
     try:
-        # Updated this regex to match an integer followed by the word "minutes", "hour", or pomodoro variations
-        duration_match = re.search(r'(\d+)\s*(minutes|hour|pomodoro|pomodori|pomodoros|pom|poms|pomo|pomos)', item)
+        # Updated this regex to match an integer followed by the word "minutes", "min", "hour", "hr", etc., and include "pomodoro" variations
+        duration_match = re.search(r'(\d+)\s*(minutes|min|mins|hour|hr|hrs|pomodoro|pomodori|pomodoros|pom|poms|pomo|pomos)', item)
         duration_val = int(duration_match.group(1))
         duration_type = duration_match.group(2)
         if duration_type in ['pomodoro', 'pomodori', 'pomodoros', 'pom', 'poms', 'pomo', 'pomos']:
             duration = duration_val * 30
         else:
-            duration = duration_val * (60 if duration_type == 'hour' else 1)
+            duration = duration_val * (60 if duration_type in ['hour', 'hr', 'hrs'] else 1)
 
         # Do the replacement based on the duration type
         title = item.replace('for ' + str(duration_val) + ' ' + duration_type, '').strip()
@@ -122,7 +123,6 @@ for item in data:
         title = item.strip()
 
     # ...
-
 
 
 
