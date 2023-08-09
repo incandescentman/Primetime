@@ -101,16 +101,24 @@ for item in data:
     else:
         raise ValueError(f"Unable to parse time from: {item}")
 
+
+
+
     # The last part might be the duration, or it might be part of the title
     try:
-        # Updated this regex to match an integer followed by the word "minutes" or "hour"
-        duration = re.search(r'(\d+)\s*(minutes|hour)', item)
-        duration_val = int(duration.group(1))
-        duration_type = 'hour' if 'hour' in duration.group(2) else 'minutes'
-        duration = duration_val * (60 if duration_type == 'hour' else 1)
+        # Updated this regex to match an integer followed by the word "minutes", "hour", or "pomodoro"/"pomodori"
+        duration_match = re.search(r'(\d+)\s*(minutes|hour|pomodoro|pomodori)', item)
+        duration_val = int(duration_match.group(1))
+        duration_type = duration_match.group(2)
+        if duration_type in ['pomodoro', 'pomodori']:
+            duration = duration_val * 30
+        else:
+            duration = duration_val * (60 if duration_type == 'hour' else 1)
 
         # Do the replacement based on the duration type
         if duration_type == 'hour':
+            title = item.replace('for ' + str(duration_val) + ' ' + duration_type, '').strip()
+        elif duration_type in ['pomodoro', 'pomodori']:
             title = item.replace('for ' + str(duration_val) + ' ' + duration_type, '').strip()
         else:
             title = item.replace('for ' + str(duration_val) + ' ' + duration_type, '').strip()
@@ -118,6 +126,10 @@ for item in data:
         # If it's not a duration, it's part of the title
         duration = None
         title = item.strip()
+
+
+
+
 
     # Create a new event and add it to the list
     e = Event()
