@@ -29,7 +29,8 @@ Time blocking is different from time boxing.
 
 2. *Time Boxing:* This technique involves allotting a fixed amount of time, or a "box" of time, to each task, after which you move on to the next task whether the current task is completed or not. For example, you could decide to dedicate exactly one hour to brainstorming ideas for a project, after which you would move on to the next task, regardless of whether you've finished brainstorming or not. The primary goal of time boxing is to prevent tasks from dragging on and consuming more time than they should.
 
-[[/Users/jay/Dropbox/github/primetime/635bd94d968178767885fa30_time-blocking-01.png]]
+[[ https://github.com/incandescentman/primetime/raw/main/635bd94d968178767885fa30_time-blocking-01.png]]
+
 Source: [[https://workflowy.com/systems/time-blocking/][Time blocking - Workflowy guide]]
 
 Time blocking is about organizing your day into blocks of time dedicated to certain tasks, whereas time boxing is about limiting the amount of time you spend on any given task.
